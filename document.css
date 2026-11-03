@@ -1,0 +1,64 @@
+  @font-face { font-family:'Cormorant Garamond'; font-style:italic; font-weight:500; font-display:swap;
+    src:url('./fonts/cormorant-garamond-500-italic-latin.woff2') format('woff2'); }
+  @font-face { font-family:'EB Garamond'; font-style:normal; font-weight:400; font-display:swap;
+    src:url('./fonts/eb-garamond-400-normal-latin.woff2') format('woff2'); }
+  @font-face { font-family:'Space Mono'; font-style:normal; font-weight:400; font-display:swap;
+    src:url('./fonts/space-mono-400-normal-latin.woff2') format('woff2'); }
+  :root {
+    --bg:#0d0b08; --ink:rgba(240,230,210,0.92); --soft:rgba(220,210,190,0.72);
+    --mute:rgba(200,185,160,0.42); --accent:#c8a86b; --rule:rgba(200,185,160,0.11);
+    --serif:'EB Garamond',Georgia,serif; --display:'Cormorant Garamond',Georgia,serif;
+    --mono:'Space Mono',ui-monospace,monospace;
+    --document-safe-t:env(safe-area-inset-top,0px);
+    --document-safe-b:env(safe-area-inset-bottom,0px);
+  }
+  * { box-sizing:border-box; margin:0; }
+  html, body { background:var(--bg); }
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  /* App frames already sit inside the host's safe area. Keep their scroll
+     viewport bounded instead of relying on WKWebView's iframe root scrolling. */
+  html.in-app-document {
+    height:100%; overflow:hidden;
+    --document-safe-t:0px; --document-safe-b:0px;
+  }
+  html.in-app-document body {
+    height:100%; min-height:0; overflow-x:hidden; overflow-y:auto;
+    -webkit-overflow-scrolling:touch; overscroll-behavior-y:contain; touch-action:pan-y;
+  }
+  body {
+    position:relative;
+    min-height:100vh; font-family:var(--serif); color:var(--ink); line-height:1.8;
+    padding:calc(var(--document-safe-t) + 64px) 24px
+            calc(var(--document-safe-b) + 20px);
+    -webkit-font-smoothing:antialiased; font-size:16px;
+  }
+  .wrap { max-width:680px; margin:0 auto; }
+  .close { position:absolute; top:12px; left:18px; padding:6px; background:none; border:none;
+    color:rgba(200,168,107,.62); cursor:pointer; -webkit-tap-highlight-color:transparent; line-height:0; }
+  .close svg { display:block; }
+  .eyebrow { font-family:var(--mono); font-size:10px; line-height:18px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--accent); text-align:center; margin-bottom:14px; }
+  h1 { font-family:var(--display); font-style:italic; font-weight:500; font-size:48px;
+    text-align:center; color:#f4ead2; line-height:1; margin-bottom:20px; }
+  .lede { max-width:540px; margin:0 auto 46px; text-align:center; color:var(--soft); }
+  .contact { border:1px solid var(--rule); background:rgba(200,168,107,.035);
+    padding:24px; margin-bottom:42px; text-align:center; }
+  .contact p { margin-bottom:12px; }
+  .button { display:inline-block; border:1px solid rgba(200,168,107,.45); padding:10px 16px;
+    color:#ead6aa; text-decoration:none; font-family:var(--mono); font-size:10px;
+    letter-spacing:.14em; text-transform:uppercase; }
+  h2 { font-family:var(--display); font-style:italic; font-weight:500; font-size:28px;
+    color:#f4ead2; line-height:1.15; margin:32px 0 8px; }
+  p { color:var(--soft); margin-bottom:12px; }
+  strong { color:var(--ink); font-weight:500; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:44px 0 24px; }
+  .foot { font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--mute); text-align:center; line-height:1.9; margin-bottom:0; }
+  @media (max-width:480px) { h1 { font-size:42px; } }
+
+/* Policy-specific metadata uses the shared document typography and spacing. */
+.date { font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--mute); text-align:left; margin:24px 0 0; }
+h2 .n { font-family:var(--mono); font-style:normal; font-size:11px; color:var(--accent);
+  letter-spacing:.16em; margin-right:10px; vertical-align:2px; }
